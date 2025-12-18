@@ -3,10 +3,18 @@ import { Search, SlidersHorizontal, Heart, Clock, GraduationCap } from 'lucide-r
 import heroImage from "../../assets/hero.jpg";
 import { Link } from 'react-router-dom';
 import { motion } from "motion/react";
+import { useState } from "react";
 
 
 //default major to jobs categories
 export default function Home() {
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [majors, setMajors] = useState<any[]>([]);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [error, setError] = useState("");
+
   const careerCategories = [
     {name: 'Tech', jobs: ['Software Engineer', 'Data Scientist', 'UX Designer', 'Cybersecurity Analyst']},
 
@@ -16,6 +24,43 @@ export default function Home() {
 
     { name: 'Business', jobs: ['Marketing Manager', 'Financial Analyst', 'Human Resources Manager', 'Management Consultant']}
   ];
+
+  async function handleSearch() {
+  const q = query.trim();
+  if (!q) return;
+
+  setLoading(true);
+  setError("");
+
+  try {
+    const [jobsRes, majorsRes] = await Promise.all([
+      fetch(`/api/jobs?q=${encodeURIComponent(q)}`),
+      fetch(`/api/majors?q=${encodeURIComponent(q)}`),
+    ]);
+
+    const jobsData = await jobsRes.json();
+    const majorsData = await majorsRes.json();
+
+    setJobs(jobsData.jobs ?? []);
+    setMajors(majorsData.majors ?? []);
+    setCourses(majorsData.courses ?? []);
+
+    // save search 
+    await fetch("/api/saveSearch", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: q,
+        topJobTitle: (jobsData.jobs?.[0]?.title ?? null),
+      }),
+    });
+  } catch (e: any) {
+    setError("Search failed. Try again.");
+  } finally {
+    setLoading(false);
+  }
+}
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -69,14 +114,16 @@ export default function Home() {
           <label htmlFor="search" className="block mb-3 text-black">Search by Job Title or Keyword</label>
           <div className="flex gap-3">
             <div className="flex-1 relative">
-              <input type="text" id="search" placeholder="Try 'Software Engineer' or 'UX' "className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"/>
+              <input type="text" id="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Try 'Software Engineer' or 'UX' "className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"/>
+
 
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             </div>
             <button className="px-6 py-3 bg-white border border-black rounded-lg hover:bg-black hover:text-white transition-colors flex items-center gap-2">
               <SlidersHorizontal className="w-5 h-5" /> Filters</button>
 
-            <button className="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">Search</button>
+            <button onClick={handleSearch} className="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"> Search</button>
+
           </div>
 
         </div>
@@ -105,42 +152,62 @@ export default function Home() {
         </div>
       </div>
 
-      {/* results Area placeholder--will hide this later so only shows on results */}
-      <div className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-8">
-          <h2 className="text-4xl text-black mb-3 tracking-tight"> Results</h2>
-          <p className="text-gray-700 mb-12"> Matching results will appear here after search</p>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* placeholder card 1 */}
-            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 min-h-[300px] flex flex-col items-center justify-center">
-              <div className="text-center text-gray-400">
-                <div className="w-16 h-16 bg-gray-100 rounded-lg mx-auto mb-4"></div>
-                <p className="mb-2">Job Card</p>
-                <p className="text-sm">Job title & description</p>
-              </div>
-            </div>
+      {loading && <p className="text-gray-700">Loading results…</p>}
+      {error && <p className="text-red-600">{error}</p>}
+       {/* results section */}
 
-            {/* placeholder card 2 */}
-            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 min-h-[300px] flex flex-col items-center justify-center">
-              <div className="text-center text-gray-400">
-                <div className="w-16 h-16 bg-gray-100 rounded-lg mx-auto mb-4"></div>
-                <p className="mb-2">Matching Majors</p>
-                <p className="text-sm">Related degree programs</p>
-              </div>
-            </div>
+      {!loading && (jobs.length > 0 || majors.length > 0) && (
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* jobs */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-4">Jobs</h3>
+            <div className="space-y-4">
+              {jobs.slice(0, 3).map((j) => (
+                <div key={j.title} className="border-b pb-3">
+                  <p className="font-semibold">{j.title}</p>
+                  <p className="text-sm text-gray-600">{j.company} • {j.location}</p>
 
-            {/* placeholder card 3 */}
-            <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg p-8 min-h-[300px] flex flex-col items-center justify-center">
-              <div className="text-center text-gray-400">
-                <div className="w-16 h-16 bg-gray-100 rounded-lg mx-auto mb-4"></div>
-                <p className="mb-2">Skill Tags</p>
-                <p className="text-sm">Required competencies</p>
-              </div>
+                  {/* skill tags */}
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {(j.skills ?? []).slice(0, 6).map((s: string) => (
+                      <span key={s} className="text-xs px-2 py-1 bg-gray-100 rounded-full">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* majors */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-4">Matching Majors</h3>
+            <ul className="space-y-3">
+              {majors.slice(0, 8).map((m) => (
+                <li key={m.name}>
+                  <p className="font-semibold">{m.name}</p>
+                  <p className="text-sm text-gray-600">{m.department}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* courses */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-4">Suggested Courses</h3>
+            <ul className="space-y-3">
+              {courses.slice(0, 6).map((c) => (
+                <li key={c.course_id}>
+                  <p className="font-semibold">{c.course_id}: {c.name}</p>
+                  <p className="text-xs text-gray-600">{String(c.description ?? "").slice(0, 120)}…</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      )}
+
 
       {/* why major decisions section */}
       <div className="max-w-7xl mx-auto px-8 py-20">
