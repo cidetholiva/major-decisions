@@ -25,11 +25,11 @@ Major Decisions is designed as a responsive web application and supports modern 
 
   Backend 
   
-  1. GET - retrieve data from the server
+  1. `GET` - retrieve data from the server
 
-  2. POST - send data to sever and create a new resource
+  2. `POST` - send data to sever and create a new resource
 
-  3. PATCH - alter an existing resource with modifications
+  3. `PATCH` - alter an existing resource with modifications
 
   Bugs/Errors: Proceed with Caution! 
 
