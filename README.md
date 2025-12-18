@@ -33,6 +33,6 @@ Major Decisions is designed as a responsive web application and supports modern 
 
   Bugs/Errors: Proceed with Caution! 
 
-  1. Case Sensitivity
+  1. Case Sensitivity - testing rq 
      
   2. Special Characters 
