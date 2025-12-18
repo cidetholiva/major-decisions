@@ -24,6 +24,10 @@ Major Decisions is designed as a responsive web application and supports modern 
   3. Run `npm test` for all tests 
 
   Backend 
+
+  API for our server application: 
+
+    Endpoints: 
   
   1. `GET` - retrieve data from the server
 
@@ -31,8 +35,14 @@ Major Decisions is designed as a responsive web application and supports modern 
 
   3. `PATCH` - alter an existing resource with modifications
 
-  Bugs/Errors: Proceed with Caution! 
+  Bugs/Errors:  
+  
+  1. Special Characters - be catious when using characters such as "@#$%^&*" 
 
-  1. Case Sensitivity - testing rq 
-     
-  2. Special Characters 
+  Future Development 
+
+  1. More personalization, optimize matches with your account and relevant information 
+
+  2. Accessibility features 
+
+  3. Customization 
