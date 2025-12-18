@@ -21,7 +21,7 @@ Major Decisions is designed as a responsive web application and supports modern 
   
   2. Run `npm run dev` to start
 
-  3. Run npm test for all tests 
+  3. Run `npm test` for all tests 
 
   Backend 
   
