@@ -68,7 +68,7 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* more info? */}
+      {/* more info */}
       <div className="max-w-7xl mx-auto px-8 py-20">
         <div className="max-w-3xl space-y-6">
           <h2 className="text-4xl text-yellow-500 mb-8 tracking-tight">
