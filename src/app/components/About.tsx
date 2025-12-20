@@ -144,7 +144,7 @@ export default function About() {
             transition={itemTransition}
             className="text-lg text-black leading-relaxed"
           >
-            We believe students shouldn't have to navigate complex degree catalogs alone or guess which major leads to which career. By starting with job titles and skills, not abstract degree names —we reduce confusion, wasted time, and stress.
+            We believe students shouldn't have to navigate complex degree catalogs alone or guess which major leads to which career. By starting with job titles and skills and not degree names —we reduce confusion, wasted time, and stress.
           </motion.p>
 
           <motion.p

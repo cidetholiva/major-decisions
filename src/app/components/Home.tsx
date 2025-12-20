@@ -437,7 +437,7 @@ export default function Home() { //this is all for storing and tracking
                 type="text" 
                 id="search" 
                 value={query} 
-                onChange={(e) => setQuery(e.target.value)} 
+                onChange={(e) => /[^a-zA-Z\s]/.test(e.target.value) ? alert("Please use letters only.") : setQuery(e.target.value)} //no symbols or nums
                 onKeyDown={(e) => { if (e.key === "Enter") handleSearch(); }}
                 placeholder="Try 'Software Engineer' or 'UX' "
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
