@@ -9,8 +9,8 @@
  
   **Target Browsers**
   
-  Major Decisions is designed as a responsive web application and supports modern desktop and mobile browsers, including Google Chrome (desktop & Android), Safari (macOS & iOS), Mozilla Firefox (desktop), and Microsoft Edge (desktop).
-
+ Major Decisions is designed for modern desktop browsers, including Google Chrome, Safari (macOS), Mozilla Firefox, and Microsoft Edge. The application works best on desktop devices.
+ 
  ## Developer Manual
   **[View the Developer Manual](docs/developer-manual.md)**  
 The Developer Manual contains setup instructions, API documentation, known bugs, and a roadmap for future development!
