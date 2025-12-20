@@ -67,9 +67,7 @@ Supabase is used as a PostgreSQL database.
 
 ## Testing
 API testing was performed manually using **Insomnia** to verify that endpoints returned valid responses.
-
 The original job search API suddenly stopped working, so OpenWebNinja Jobs API was used instead.
-
 There were no automated tests implemented but in the future, adding **Vitest** for frontend could be useful. 
 
 ---
@@ -82,7 +80,7 @@ There were no automated tests implemented but in the future, adding **Vitest** f
 ---
 
 ## Roadmap for Future Development
-Planned improvements include:
+Improvements include:
 - Improving relevance between jobs, majors, and courses
 - Caching majors and course data so results load faster 
 - Adding user authentication
@@ -100,6 +98,7 @@ All backend logic is handled through Vercel serverless functions located in the 
 
 ### 1. Clone Repo 
 -git clone https://github.com/cidetholiva/major-decisions.git
+
 -cd major-decisions
 
 ### 2. Install dependencies 
@@ -112,14 +111,17 @@ All backend logic is handled through Vercel serverless functions located in the 
 - Add the following (using your own keys): 
 
 SUPABASE_URL= your supabase project url
+
 SUPABASE_ANON_KEY= your supabase anon key
+
 OPENWEBNINJA_API_KEY= your openwebninja api key
 
-_Make sure these match the environment variables configured in Vercel. _
+_Make sure these match the environment variables configured in Vercel._ 
 
 ### 4. Run the application
 - RUN npm run dev 
 - Open http://localhost:5173
+  
 _Both frontend and backend serverless functions run together locally._ 
 
 ### 5. Deployment 
