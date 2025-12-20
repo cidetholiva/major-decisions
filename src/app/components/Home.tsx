@@ -487,7 +487,7 @@ export default function Home() { //this is all for storing and tracking
             </div>
           )}
 
-          {loading && <p className="text-gray-700 mt-6">Just a moment.Loading results…</p>}
+          {loading && <p className="text-gray-700 mt-6">Just a moment! Loading results…</p>}
           {error && <p className="text-red-600 mt-6">{error}</p>}
 
           {/* results section - results now will show up directly under search bar */}
