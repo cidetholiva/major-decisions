@@ -614,7 +614,7 @@ export default function Home() { //this is all for storing and tracking
       {/* career categories preview */}
       <div className="max-w-7xl mx-auto px-8 py-20">
         <h2 className="text-4xl text-black mb-3 tracking-tight">Explore Career Fields</h2>
-        <p className="text-lg text-gray-700 mb-12 max-w-2xl">Browse popular career paths to see what majors can get you there</p>
+        <p className="text-lg text-gray-700 mb-12 max-w-2xl">Browse popular career paths to see what majors can lead you there</p>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {careerCategories.map((category) => (
@@ -661,7 +661,7 @@ export default function Home() { //this is all for storing and tracking
               <GraduationCap className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-2xl text-black mb-4">Connect Education to Careers</h3>
-            <p className="text-gray-700 leading-relaxed">See exactly where each major leads. Make informed decisions based on real-world outcomes, not guesswork.</p>
+            <p className="text-gray-700 leading-relaxed">See exactly where each major leads. Make informed decisions based on real-world outcomes and skills.</p>
           </div>
         </div>
       </div>
