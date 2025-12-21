@@ -4,7 +4,7 @@ import { Search, SlidersHorizontal, Heart, Clock, GraduationCap } from 'lucide-r
 import heroImage from "../../assets/hero.jpg";
 import { Link } from 'react-router-dom';
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 //home page component (default export so router can load it easily)
@@ -15,6 +15,14 @@ export default function Home() { //this is all for storing and tracking
   const [majors, setMajors] = useState<any[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
   const [error, setError] = useState("");
+  const [topSearches, setTopSearches] = useState<{ keyword: string; searches: number }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/topSearches")
+      .then((res) => res.json())
+      .then((data) => setTopSearches(data.top || []))
+      .catch(() => setTopSearches([]));
+  }, []);
 
   // added this for a better ui look so it doesn't load a huge set of lists. --so adding "view more" options, the results don't show all at once unless view more 
   const [jobsVisible, setJobsVisible] = useState(5); //5 jobs display (we can add more but i think 5 is good)
@@ -138,7 +146,6 @@ export default function Home() { //this is all for storing and tracking
     // counts how often phrases appear then sorts by frequency
     const freq: Record<string, number> = {};
     for (const p of phrases) freq[p] = (freq[p] ?? 0) + 1;
-
     return Object.entries(freq)
       .sort((a, b) => b[1] - a[1]) //high freq at first
       .map(([p]) => p)
@@ -456,6 +463,25 @@ export default function Home() { //this is all for storing and tracking
             <button onClick={handleSearch} className="px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"> Search</button>
 
           </div>
+
+          {topSearches.length > 0 && (
+            <div className="mt-4">
+              <p className="text-sm text-gray-600 mb-2">Trending searches</p>
+              <div className="flex flex-wrap gap-2">
+                {topSearches.map((s) => (
+                  <button
+                    key={s.keyword}
+                    type="button"
+                    onClick={() => setQuery(s.keyword)}
+                    className="text-sm px-3 py-1 rounded-full border border-gray-300 hover:border-red-600 hover:text-red-600 transition"
+                    title={`${s.searches} searches`}
+                  >
+                    {s.keyword}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* filters section */}
           {showFilters && (

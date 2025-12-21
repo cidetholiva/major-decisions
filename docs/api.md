@@ -21,6 +21,16 @@ Returns matching majors and suggested courses based on relevance to the search q
 
 ---
 
+#### GET /api/topSearches
+
+Returns the most frequently searched keywords based on saved user searches.
+
+**Response:**
+
+-Array of top 5 anonymous searches 
+
+---
+
 ### POST Endpoints
 
 #### `POST /api/saveSearch`
