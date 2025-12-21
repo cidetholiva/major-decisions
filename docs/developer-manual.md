@@ -44,7 +44,7 @@ Returns matching majors and suggested courses based on relevance to the search q
 
 ---
 
-#### GET /api/topSearches
+#### `GET /api/topSearches`
 
 Returns the most frequently searched keywords based on saved user searches.
 
