@@ -84,7 +84,7 @@ export default function About() {
               <div className="text-center">
                 <div className="text-5xl text-red-600 mb-3">50%</div>
                 <p className="text-base text-gray-700 leading-relaxed">
-                  of graduates work in jobs unrelated to their degree
+                  of graduates work in jobs unrelated to their degree/minors/certificates 
                 </p>
               </div>
             </motion.div>
@@ -98,7 +98,7 @@ export default function About() {
               <div className="text-center">
                 <div className="text-5xl text-red-600 mb-3">$30k+</div>
                 <p className="text-base text-gray-700 leading-relaxed">
-                  average cost of switching majors or delayed graduation
+                  is the average cost of switching majors or delayed graduation by a few semesters
                 </p>
               </div>
             </motion.div>
@@ -313,7 +313,7 @@ export default function About() {
                 </motion.div>
 
                 <p className="text-lg text-black leading-relaxed">
-                  Rather than relying on vague program descriptions or outdated stereotypes about majors, we show students the concrete connections between what they'll study and what they'll be able to do.
+                  Rather than relying on vague program descriptions or outdated stereotypes about majors, we show students the concrete connections between what they'll study and what they'll be able to do with those skillsets they acquire.
                 </p>
               </div>
             </motion.div>
@@ -332,7 +332,7 @@ export default function About() {
                 </motion.div>
 
                 <p className="text-lg text-black leading-relaxed">
-                  Our methodology is evidence-based, student-centered, and designed to evolve as labor markets and academic programs change.
+                  Our methodology is evidence-based, student-centered, and designed to evolve as labor markets and academic programs evolve over time.
                 </p>
               </div>
             </motion.div>
