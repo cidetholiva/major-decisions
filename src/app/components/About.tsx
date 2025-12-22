@@ -33,7 +33,7 @@ export default function About() {
     { icon: Users, title: "Accessibility", description: "Education pathways should be understandable to everyone—students, families, and advisors—regardless of prior knowledge about academic systems.", color: "from-red-600 to-red-400",},
     { icon: Target, title: "Clarity", description: "We present information in plain language, with transparent connections between skills, courses, majors, and jobs.", color: "from-red-600 to-red-400",},
     { icon: Shield, title: "Empowerment", description: "Students deserve tools that help them take control of their academic journey, not systems that add to their uncertainty.", color: "from-red-600 to-red-400",},
-    { icon: Heart, title: "Equity", description: "All students—especially those who are first-generation, transfer, or unfamiliar with higher education—should have equal access to the information they need to succeed.", color: "from-red-600 to-red-400",}, //tailwind (to do gradiant, change color + nums)
+    { icon: Heart, title: "Equity", description: "All students, especially those who are first-generation, transfers, or unfamiliar with higher education, should have equal access to the information they need to succeed academically and career wise.", color: "from-red-600 to-red-400",}, //tailwind (to do gradiant, change color + nums)
   ];
 
   return (
