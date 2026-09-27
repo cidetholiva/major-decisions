@@ -713,7 +713,7 @@ export default function Home() { //this is all for storing and tracking
           </div>
           <div className="text-center md:text-left">
             <p className="text-sm text-white/80">
-              INST377- Cideth Oliva & Khadija Wane
+        
             </p>
           </div>
         </div>
